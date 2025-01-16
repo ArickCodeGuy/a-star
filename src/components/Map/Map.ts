@@ -11,7 +11,10 @@ const DEFAULT_OPTIONS: MapOptions = {
   objects: [],
 };
 
-export const UseMap = (partialOptions: Partial<MapOptions> = {}) => {
+export const UseMap = (
+  app: HTMLElement,
+  partialOptions: Partial<MapOptions> = {}
+) => {
   // @@TODO: no deep copy
   const options: MapOptions = {
     ...DEFAULT_OPTIONS,
@@ -31,6 +34,8 @@ export const UseMap = (partialOptions: Partial<MapOptions> = {}) => {
   setInterval(() => {
     render();
   }, 1000 / 60);
+
+  app.appendChild(canvas);
 
   return {
     canvas,

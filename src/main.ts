@@ -1,13 +1,11 @@
-import { DEFAULT_3_3_CHUNK_1 } from './components/Chunk/constants/CHUNKS_3_3';
+import { CHUNKS_3_3 } from './components/Chunk/constants/CHUNKS_3_3';
+import { generateMap } from './components/Chunk/generateMap';
+import { mapOfCellsToMapOfObjects } from './components/Chunk/mapOfCellsToMapOfObjects';
 import { UseMap } from './components/Map/Map';
-import { chunkToMapObject } from './components/Map/utils/chunkToMapObject';
 import './style.css';
 
 const APP_EL = document.querySelector<HTMLDivElement>('#app')!;
 
-const map = UseMap();
-map.options.objects.push(
-  ...chunkToMapObject(DEFAULT_3_3_CHUNK_1, map.options.position)
-);
-
-APP_EL.appendChild(map.canvas);
+UseMap(APP_EL, {
+  objects: mapOfCellsToMapOfObjects(generateMap(5, 5, CHUNKS_3_3)),
+});

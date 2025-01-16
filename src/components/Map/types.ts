@@ -1,4 +1,4 @@
-import { ChunkOptions } from '../Chunk/types';
+import { CellValue, ChunkOptions } from '../Chunk/types';
 import { PositionKey } from './utils/getPositionKey';
 
 export type MapRectObject = {
@@ -34,7 +34,4 @@ export type MapOptions = {
 
 export type MapOfChunks = Record<PositionKey, ChunkOptions['id']>;
 
-export type MapOfCells = Record<
-  PositionKey,
-  ChunkOptions['cells'][number][number]
->;
+export type MapOfCells = Record<PositionKey, CellValue>;

@@ -22,8 +22,6 @@ export const useCtxRender =
   (ctx: CanvasRenderingContext2D, options: MapOptions) => () => {
     useCtxClear(ctx, options)();
 
-    console.log(options.objects, options.translate);
-
     for (const obj of options.objects) {
       // OOB check?
       switch (obj.type) {

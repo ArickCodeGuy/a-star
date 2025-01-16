@@ -17,7 +17,7 @@ export function generateChunks(
   chunksArr: ChunkOptions[]
 ): MapOfChunks {
   const map: MapOfChunks = {};
-  const size = minSize + Math.floor(Math.random() * range);
+  const size = minSize + Math.floor(Math.random() * (range + 1));
 
   function getEmptyNeighbors(map: MapOfChunks): PositionKey[] {
     const set = new Set<PositionKey>();
@@ -25,10 +25,9 @@ export function generateChunks(
     for (const key of Object.keys(map)) {
       const { x, y } = positionKeyToPosition(key as PositionKey);
 
-      for (const [nx, ny] of DIRS) {
-        const pos = { x: x + nx, y: y + ny };
-        const newPositionKey = getPositionKey(pos);
-        if (!map[newPositionKey]) continue;
+      for (const [dx, dy] of DIRS) {
+        const newPositionKey = getPositionKey({ x: x + dx, y: y + dy });
+        if (map[newPositionKey]) continue;
         set.add(newPositionKey);
       }
     }
