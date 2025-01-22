@@ -10,7 +10,7 @@ export function mapOfCellsToMapOfObjects(
 ): MapOptions['objects'] {
   const objects: MapOptions['objects'] = [];
 
-  for (const [pos, id] of Object.entries<[PositionKey, CellValue]>(map)) {
+  for (const [pos, id] of Object.entries(map) as [PositionKey, CellValue][]) {
     const { x, y } = positionKeyToPosition(pos);
 
     objects.push({

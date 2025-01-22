@@ -6,6 +6,8 @@ import './style.css';
 
 const APP_EL = document.querySelector<HTMLDivElement>('#app')!;
 
-UseMap(APP_EL, {
-  objects: mapOfCellsToMapOfObjects(generateMap(5, 5, CHUNKS_3_3)),
+const cells = generateMap(5, 5, CHUNKS_3_3);
+
+const map = UseMap(APP_EL, {
+  objects: mapOfCellsToMapOfObjects(cells),
 });

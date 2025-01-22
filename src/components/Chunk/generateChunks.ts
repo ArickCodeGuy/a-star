@@ -1,4 +1,7 @@
-import { getRandomItemFromArray } from '../../utils/getRandomItemFromArray';
+import {
+  getRandomIndexFromArray,
+  getRandomItemFromArray,
+} from '../../utils/getRandomItemFromArray';
 import { MapOfChunks } from '../Map/types';
 import { getPositionKey, PositionKey } from '../Map/utils/getPositionKey';
 import { positionKeyToPosition } from '../Map/utils/positionKeyToPosition';
@@ -40,12 +43,15 @@ export function generateChunks(
 
     if (i === 0) {
       key = getPositionKey({ x: 0, y: 0 });
+      const idx = getRandomIndexFromArray(chunksArr);
+      map[key] = idx;
     } else {
+      // @@TODO make sure chunk is appendable
       key = getRandomItemFromArray(getEmptyNeighbors(map));
-    }
-    const chunk = getRandomItemFromArray(chunksArr);
 
-    map[key] = chunk.id;
+      const idx = getRandomIndexFromArray(chunksArr);
+      map[key] = idx;
+    }
   }
 
   return map;

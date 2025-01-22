@@ -11,17 +11,15 @@ export function generateCells(
   const size = chunksArr[0].cells.length;
 
   const map: MapOfCells = {};
-  const chunksMap = chunksArr.reduce<Map<ChunkOptions['id'], ChunkOptions>>(
-    (map, i) => {
-      map.set(i.id, i);
+  const chunksMap = chunksArr.reduce<Map<number, ChunkOptions>>(
+    (map, i, idx) => {
+      map.set(idx, i);
       return map;
     },
     new Map()
   );
 
-  for (const [pos, id] of Object.entries<[PositionKey, ChunkOptions['id']]>(
-    chunks
-  )) {
+  for (const [pos, id] of Object.entries(chunks) as [PositionKey, number][]) {
     const chunk = chunksMap.get(id);
     if (!chunk) throw new Error(`Chunk is not provided. id: ${id}`);
 
