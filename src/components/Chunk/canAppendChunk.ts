@@ -26,8 +26,8 @@ export function canAppendChunk(
   if (direction === 'DOWN') y = s - 1;
 
   while (!isOob([x, y], chunk1)) {
-    const [x2, y2] = convertPos([x, y], s);
-    if (chunk1[y][x] && chunk2[s - 1 - y2][s - 1 - x2]) return true;
+    const [x2, y2] = convertPos([x, y], s, direction);
+    if (chunk1[y][x] && chunk2[y2][x2]) return true;
 
     y += dy;
     x += dx;
