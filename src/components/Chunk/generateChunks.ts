@@ -16,14 +16,14 @@ export function generateChunks(
   chunksArr: ChunkOptions[]
 ): MapOfChunks {
   const map: MapOfChunks = {};
-  const size = minSize + Math.floor(Math.random() * (range + 1));
+  let size = minSize + Math.floor(Math.random() * (range + 1));
 
   // spawn first cell at center
   map[getPositionKey({ x: 0, y: 0 })] = getRandomIndexFromArray(chunksArr);
 
   for (let i = 1; i < size; i++) {
     // 1. Choose direction
-    // 2. Get possible positions that can append at least one type of chunk
+    // 2. Get all possible positions that can append at least one type of chunk
     // 3. Get random position
     // 4. Get random chunk, that we can append, for this position
 
@@ -38,7 +38,12 @@ export function generateChunks(
     );
 
     if (!appendablePositions.length) {
-      console.warn('No appendable chunks. Should fix probably');
+      console.warn(
+        'No appendable chunks. Should fix probably',
+        map,
+        appendDirection
+      );
+      size++;
       continue;
     }
 
