@@ -32,6 +32,8 @@ export type MapOptions = {
   objects: MapCellObject[];
 };
 
-export type MapOfChunks = Record<PositionKey, number>;
+export type MapOfChunks = PositionMap;
 
-export type MapOfCells = Record<PositionKey, CellValue>;
+export type MapOfCells = PositionMap<CellValue>;
+
+export type PositionMap<T = number> = Record<PositionKey, T>;

@@ -7,6 +7,8 @@ export function generateCells(
   chunks: MapOfChunks,
   chunksArr: ChunkOptions[]
 ): MapOfCells {
+  if (!chunksArr.length) return {};
+
   // size of chunks
   const size = chunksArr[0].cells.length;
 
