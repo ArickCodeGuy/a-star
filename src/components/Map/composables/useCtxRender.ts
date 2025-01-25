@@ -23,7 +23,7 @@ export const useCtxRender =
     useCtxClear(ctx, options)();
 
     for (const obj of options.objects) {
-      // OOB check?
+      // @@TODO oob check?
       switch (obj.type) {
         case 'rect':
           renderRectObj(ctx, obj, options);
