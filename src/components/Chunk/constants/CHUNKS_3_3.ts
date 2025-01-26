@@ -31,10 +31,18 @@ export const DEFAULT_3_3_CHUNK_4: ChunkOptions = {
     [1, 0, 0],
   ],
 };
+export const DEFAULT_3_3_CHUNK_5: ChunkOptions = {
+  cells: [
+    [0, 0, 1],
+    [0, 1, 1],
+    [1, 1, 0],
+  ],
+};
 
 export const CHUNKS_3_3 = [
   DEFAULT_3_3_CHUNK_1,
   DEFAULT_3_3_CHUNK_2,
   DEFAULT_3_3_CHUNK_3,
   DEFAULT_3_3_CHUNK_4,
+  DEFAULT_3_3_CHUNK_5,
 ];
