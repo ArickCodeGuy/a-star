@@ -3,7 +3,7 @@ import { PositionKey } from '../Map/utils/getPositionKey';
 import { positionKeyToPosition } from '../Map/utils/positionKeyToPosition';
 import { CellValue } from './types';
 
-const CHUNK_CELL_SIZE = 50;
+export const CHUNK_CELL_SIZE = 50;
 
 export const CHUNK_CELL_NAME = 'CHUNK_CELL';
 

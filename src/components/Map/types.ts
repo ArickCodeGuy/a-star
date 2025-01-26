@@ -32,6 +32,7 @@ export type MapOptions = {
   zoom: number;
   renderDistance: number;
   objects: MapRenderObject[];
+  onClick?: (e: MouseEvent, options: MapOptions) => void;
 };
 
 export type MapOfChunks = PositionMap;

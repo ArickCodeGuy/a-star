@@ -39,21 +39,7 @@ export const useEventListeners = (
   }
 
   function handleClick(e: MouseEvent): void {
-    const x = e.offsetX - options.translate.x,
-      y = e.offsetY - options.translate.y;
-    const pos: MapOptions['position'] = { x, y };
-    for (const obj of options.objects) {
-      if (!isClickWithinRect(pos, obj) || obj.name !== CHUNK_CELL_NAME)
-        continue;
-      console.log('isClickWithinRect', obj);
-
-      if (choosenRect) {
-        choosenRect.color = 'white';
-      }
-
-      obj.color = 'red';
-      choosenRect = obj;
-    }
+    options.onClick?.(e, options);
   }
 
   canvas.addEventListener('dblclick', handleClick);
