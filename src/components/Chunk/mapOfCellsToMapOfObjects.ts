@@ -5,6 +5,8 @@ import { CellValue } from './types';
 
 const CHUNK_CELL_SIZE = 50;
 
+export const CHUNK_CELL_NAME = 'CHUNK_CELL';
+
 export function mapOfCellsToMapOfObjects(
   map: MapOfCells
 ): MapOptions['objects'] {
@@ -15,6 +17,7 @@ export function mapOfCellsToMapOfObjects(
 
     objects.push({
       type: 'rect',
+      name: CHUNK_CELL_NAME,
       x: CHUNK_CELL_SIZE * x,
       y: CHUNK_CELL_SIZE * y,
       // -1 for gap

@@ -1,8 +1,10 @@
-import { CellValue, ChunkOptions } from '../Chunk/types';
+import { CellValue } from '../Chunk/types';
 import { PositionKey } from './utils/getPositionKey';
 
 export type MapRectObject = {
   type: 'rect';
+  /** For identifying purposes only */
+  name?: string;
   x: number;
   y: number;
   width: number;
@@ -12,7 +14,7 @@ export type MapRectObject = {
   textColor?: string;
 };
 
-export type MapCellObject = MapRectObject;
+export type MapRenderObject = MapRectObject;
 
 export type MapOptions = {
   size: {
@@ -29,7 +31,7 @@ export type MapOptions = {
   };
   zoom: number;
   renderDistance: number;
-  objects: MapCellObject[];
+  objects: MapRenderObject[];
 };
 
 export type MapOfChunks = PositionMap;
