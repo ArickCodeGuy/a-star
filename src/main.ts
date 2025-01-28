@@ -7,12 +7,19 @@ import {
 } from './components/Chunk/mapOfCellsToMapOfObjects';
 import { UseMap } from './components/Map/Map';
 import { MapOptions } from './components/Map/types';
+import {
+  getPositionKey,
+  PositionKey,
+} from './components/Map/utils/getPositionKey';
 import { isClickWithinRect } from './components/Map/utils/isClickWithinRect';
 import './style.css';
 
 const APP_EL = document.querySelector<HTMLDivElement>('#app')!;
 
 const cells = generateMap(5, 5, CHUNKS_3_3);
+
+// @@TODO
+let selectedPos: PositionKey;
 
 const map = UseMap(APP_EL, {
   objects: mapOfCellsToMapOfObjects(cells),
@@ -23,14 +30,16 @@ const map = UseMap(APP_EL, {
     for (const obj of options.objects) {
       if (!isClickWithinRect(pos, obj) || obj.name !== CHUNK_CELL_NAME)
         continue;
-      console.log('isClickWithinRect', obj);
-      console.log(
-        'actual pos',
-        Math.floor(x / CHUNK_CELL_SIZE),
-        Math.floor(y / CHUNK_CELL_SIZE)
-      );
+      selectedPos = getPositionKey({
+        x: Math.floor(x / CHUNK_CELL_SIZE),
+        y: Math.floor(y / CHUNK_CELL_SIZE),
+      });
 
-      obj.color = 'red';
+      options.objects = mapOfCellsToMapOfObjects(cells, {
+        coloredCells: {
+          [selectedPos]: 'red',
+        },
+      });
     }
   },
 });
