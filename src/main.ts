@@ -1,45 +1,20 @@
 import { CHUNKS_3_3 } from './components/Chunk/constants/CHUNKS_3_3';
 import { generateMap } from './components/Chunk/generateMap';
-import {
-  CHUNK_CELL_NAME,
-  CHUNK_CELL_SIZE,
-  mapOfCellsToMapOfObjects,
-} from './components/Chunk/mapOfCellsToMapOfObjects';
-import { UseMap } from './components/Map/Map';
-import { MapOptions } from './components/Map/types';
-import {
-  getPositionKey,
-  PositionKey,
-} from './components/Map/utils/getPositionKey';
-import { isClickWithinRect } from './components/Map/utils/isClickWithinRect';
+import { mapOfCellsToMapOfObjects } from './components/Chunk/mapOfCellsToMapOfObjects';
+import { useMap as useMap } from './components/Map/Map';
+import { usePath } from './composables/usePath';
 import './style.css';
+import { useMapClickHandler } from './composables/useMapClickHandler';
 
 const APP_EL = document.querySelector<HTMLDivElement>('#app')!;
 
 const cells = generateMap(5, 5, CHUNKS_3_3);
+const mapOfObjects = mapOfCellsToMapOfObjects(cells);
 
-// @@TODO
-let selectedPos: PositionKey;
-
-const map = UseMap(APP_EL, {
-  objects: mapOfCellsToMapOfObjects(cells),
-  onClick(e, options) {
-    const x = e.offsetX - options.translate.x,
-      y = e.offsetY - options.translate.y;
-    const pos: MapOptions['position'] = { x, y };
-    for (const obj of options.objects) {
-      if (!isClickWithinRect(pos, obj) || obj.name !== CHUNK_CELL_NAME)
-        continue;
-      selectedPos = getPositionKey({
-        x: Math.floor(x / CHUNK_CELL_SIZE),
-        y: Math.floor(y / CHUNK_CELL_SIZE),
-      });
-
-      options.objects = mapOfCellsToMapOfObjects(cells, {
-        coloredCells: {
-          [selectedPos]: 'red',
-        },
-      });
-    }
-  },
+const map = useMap(APP_EL, {
+  objects: [...mapOfObjects.values()],
 });
+
+const path = usePath(mapOfObjects);
+
+map.options.onClick = useMapClickHandler(path);

@@ -43,7 +43,8 @@ export function generateChunks(
         map,
         appendDirection
       );
-      size++;
+      // @@TODO Fix if we could not append for any direction to any of the chunks
+      size = Math.min(10000, size + 1);
       continue;
     }
 
