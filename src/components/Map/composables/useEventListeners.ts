@@ -11,7 +11,6 @@ export const useEventListeners = (
     choosenRect: MapRenderObject;
 
   function handleMoveWithinCanvas(e: MouseEvent) {
-    // @@TODO fix oob
     const xDiff = e.clientX - mouseDownX;
     const yDiff = e.clientY - mouseDownY;
 
