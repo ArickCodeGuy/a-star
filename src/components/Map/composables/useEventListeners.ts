@@ -39,12 +39,17 @@ export const useEventListeners = (
     options.onClick?.(e, options);
   }
 
+  // @@TODO zoom
+  function handleScroll(e: Event): void {}
+
   canvas.addEventListener('dblclick', handleClick);
   canvas.addEventListener('mousedown', handleMousedown);
+  canvas.addEventListener('scroll', handleScroll);
 
   function removeEventListeners() {
     canvas.removeEventListener('mousedown', handleMousedown);
     canvas.removeEventListener('dblclick', handleClick);
+    canvas.removeEventListener('scroll', handleScroll);
   }
 
   return removeEventListeners;
