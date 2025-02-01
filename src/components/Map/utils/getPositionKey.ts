@@ -1,8 +1,7 @@
-import { MapOptions } from '../types';
+import { Position } from '../../Chunk/types';
 
-export type PositionKey =
-  `${MapOptions['position']['x']},${MapOptions['position']['y']}`;
+export type PositionKey = `${Position[0]},${Position[1]}`;
 
-export function getPositionKey(position: MapOptions['position']): PositionKey {
-  return `${position.x},${position.y}`;
+export function getPositionKey([x, y]: Position): PositionKey {
+  return `${x},${y}`;
 }

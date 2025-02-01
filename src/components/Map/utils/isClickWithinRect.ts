@@ -1,7 +1,8 @@
-import { MapOptions, MapRenderObject } from '../types';
+import { Position } from '../../Chunk/types';
+import { MapRenderObject } from '../types';
 
 export function isClickWithinRect(
-  { x, y }: MapOptions['position'],
+  [x, y]: Position,
   rect: MapRenderObject
 ): boolean {
   switch (rect.type) {

@@ -1,4 +1,4 @@
-import { CellValue } from '../Chunk/types';
+import { CellValue, Position } from '../Chunk/types';
 import { PositionKey } from './utils/getPositionKey';
 
 export type MapRectObject = {
@@ -17,18 +17,9 @@ export type MapRectObject = {
 export type MapRenderObject = MapRectObject;
 
 export type MapOptions = {
-  size: {
-    x: number;
-    y: number;
-  };
-  position: {
-    x: number;
-    y: number;
-  };
-  translate: {
-    x: number;
-    y: number;
-  };
+  size: Position;
+  position: Position;
+  translate: Position;
   zoom: number;
   renderDistance: number;
   objects: MapRenderObject[];

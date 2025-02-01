@@ -15,10 +15,10 @@ export function getAppendablePositionsByDirection<T>(
   const [dx, dy] = DIRECTION_TO_MOVE_ARR[direction];
 
   for (const [pos, id] of Object.entries(map) as [PositionKey, number][]) {
-    const { x, y } = positionKeyToPosition(pos);
+    const [x, y] = positionKeyToPosition(pos);
     const nx = x + dx,
       ny = y + dy;
-    const key = getPositionKey({ x: nx, y: ny });
+    const key = getPositionKey([nx, ny]);
 
     // if chunk already exists
     if (map[key]) continue;

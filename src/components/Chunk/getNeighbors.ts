@@ -19,11 +19,11 @@ export function getPositionNeighbors<T>(
 ): PositionKey[] {
   if (!map[pos]) return [];
 
-  const { x, y } = positionKeyToPosition(pos);
+  const [x, y] = positionKeyToPosition(pos);
 
   let res: PositionKey[] = [];
   for (const [dx, dy] of DIRS) {
-    res.push(getPositionKey({ x: x + dx, y: y + dy }));
+    res.push(getPositionKey([x + dx, y + dy]));
   }
 
   return res;

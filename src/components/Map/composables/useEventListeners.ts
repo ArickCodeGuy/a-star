@@ -1,7 +1,4 @@
-import { CHUNK_CELL_NAME } from '../../Chunk/mapOfCellsToMapOfObjects';
-import { Position } from '../../Chunk/types';
 import { MapOptions, MapRenderObject } from '../types';
-import { isClickWithinRect } from '../utils/isClickWithinRect';
 
 export const useEventListeners = (
   canvas: HTMLCanvasElement,
@@ -18,15 +15,16 @@ export const useEventListeners = (
     const xDiff = e.clientX - mouseDownX;
     const yDiff = e.clientY - mouseDownY;
 
-    options.translate.x = mouseDownTranslateX + xDiff;
-    options.translate.y = mouseDownTranslateY + yDiff;
+    options.translate = [
+      mouseDownTranslateX + xDiff,
+      mouseDownTranslateY + yDiff,
+    ];
   }
 
   function handleMousedown(e: MouseEvent) {
     mouseDownX = e.clientX;
     mouseDownY = e.clientY;
-    mouseDownTranslateX = options.translate.x;
-    mouseDownTranslateY = options.translate.y;
+    [mouseDownTranslateX, mouseDownTranslateY] = options.translate;
 
     document.addEventListener('mousemove', handleMoveWithinCanvas);
     document.addEventListener(

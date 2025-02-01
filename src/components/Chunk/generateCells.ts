@@ -25,15 +25,12 @@ export function generateCells(
     const chunk = chunksMap.get(id);
     if (!chunk) throw new Error(`Chunk is not provided. id: ${id}`);
 
-    const { x: chunkX, y: chunkY } = positionKeyToPosition(pos);
+    const [chunkX, chunkY] = positionKeyToPosition(pos);
     for (let y = 0; y < size; y++) {
       for (let x = 0; x < size; x++) {
         const v = chunk.cells[y][x];
         if (!v) continue;
-        const key = getPositionKey({
-          x: chunkX * size + x,
-          y: chunkY * size + y,
-        });
+        const key = getPositionKey([chunkX * size + x, chunkY * size + y]);
         map[key] = v;
       }
     }

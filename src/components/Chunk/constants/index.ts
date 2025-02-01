@@ -18,3 +18,7 @@ export const DIRECTION_TO_ARR: Record<Direction, [number, number]> = {
   RIGHT: [0, 1],
   UP: [1, 0],
 };
+
+export const CHUNK_CELL_SIZE = 50;
+
+export const CHUNK_CELL_NAME = 'CHUNK_CELL';

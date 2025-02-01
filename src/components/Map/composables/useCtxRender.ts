@@ -7,8 +7,8 @@ function renderRectObj(
   options: MapOptions
 ): void {
   ctx.fillStyle = obj.color;
-  const x = obj.x + options.translate.x;
-  const y = obj.y + options.translate.y;
+  const x = obj.x + options.translate[0];
+  const y = obj.y + options.translate[1];
 
   ctx.fillRect(x, y, obj.width, obj.height);
 

@@ -3,7 +3,7 @@ import {
   getRandomItemFromArray,
 } from '../../utils/getRandomItemFromArray';
 import { MapOfChunks } from '../Map/types';
-import { getPositionKey, PositionKey } from '../Map/utils/getPositionKey';
+import { getPositionKey } from '../Map/utils/getPositionKey';
 import { DIRECTION_ARR } from './constants';
 import { getAppendableChunksIdxByDirection } from './getAppendableChunksByDirection';
 import { getAppendablePositionsByDirection } from './getAppendablePositionsByDirection';
@@ -19,7 +19,7 @@ export function generateChunks(
   let size = minSize + Math.floor(Math.random() * (range + 1));
 
   // spawn first cell at center
-  map[getPositionKey({ x: 0, y: 0 })] = getRandomIndexFromArray(chunksArr);
+  map[getPositionKey([0, 0])] = getRandomIndexFromArray(chunksArr);
 
   for (let i = 1; i < size; i++) {
     // 1. Choose direction

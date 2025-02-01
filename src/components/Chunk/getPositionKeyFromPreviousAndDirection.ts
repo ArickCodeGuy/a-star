@@ -10,11 +10,11 @@ export function getPositionKeyByPositionAndDirection(
 ): PositionKey {
   let [dx, dy] = DIRECTION_TO_MOVE_ARR[direction];
 
-  const { x, y } = positionKeyToPosition(position);
+  const [x, y] = positionKeyToPosition(position);
   if (invert) {
     dx = -dx;
     dy = -dy;
   }
 
-  return getPositionKey({ x: x + dx, y: y + dy });
+  return getPositionKey([x + dx, y + dy]);
 }

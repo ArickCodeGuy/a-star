@@ -6,10 +6,10 @@ const SIZE_X = 800;
 const SIZE_Y = 500;
 
 const DEFAULT_OPTIONS: MapOptions = {
-  position: { x: 0, y: 0 },
-  translate: { x: SIZE_X / 2, y: SIZE_Y / 2 },
+  position: [0, 0],
+  translate: [SIZE_X / 2, SIZE_Y / 2],
+  size: [SIZE_X, SIZE_Y],
   zoom: 1,
-  size: { x: SIZE_X, y: SIZE_Y },
   renderDistance: 3,
   objects: [],
 };
@@ -28,8 +28,8 @@ export const useMap = (
   const ctx = canvas.getContext('2d')!;
   const render = useCtxRender(ctx, options);
 
-  canvas.width = options.size.x;
-  canvas.height = options.size.y;
+  canvas.width = options.size[0];
+  canvas.height = options.size[1];
 
   const removeEventListeners = useEventListeners(canvas, options);
 

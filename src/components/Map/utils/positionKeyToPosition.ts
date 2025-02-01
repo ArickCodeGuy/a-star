@@ -1,13 +1,6 @@
-import { MapOptions } from '../types';
+import { Position } from '../../Chunk/types';
 import { PositionKey } from './getPositionKey';
 
-export function positionKeyToPosition(
-  key: PositionKey
-): MapOptions['position'] {
-  const [x, y] = key.split(',');
-
-  return {
-    x: Number(x),
-    y: Number(y),
-  };
+export function positionKeyToPosition(key: PositionKey): Position {
+  return key.split(',').map(Number) as Position;
 }

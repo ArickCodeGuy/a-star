@@ -1,7 +1,7 @@
 import { canAppendChunk } from './canAppendChunk';
 import { ChunkOptions, Direction } from './types';
 
-/** get all possible chunk idx that can be appended to `chunk` in specific direction */
+/** Get all possible chunk idx that can be appended to `chunk` in specific direction */
 export function getAppendableChunksIdxByDirection(
   chunkIdx: number,
   chunks: ChunkOptions[],
