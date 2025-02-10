@@ -10,7 +10,7 @@ const APP_EL = document.querySelector<HTMLDivElement>('#app')!;
 
 const cells = generateMap(5, 5, CHUNKS_3_3);
 const mapOfObjects = mapOfCellsToMapOfObjects(cells);
-const path = usePath(mapOfObjects);
+const path = usePath(mapOfObjects, cells);
 
 const map = useMap(APP_EL, {
   objects: [...mapOfObjects.values()],
