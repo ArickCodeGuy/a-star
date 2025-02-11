@@ -1,5 +1,6 @@
 import { mapOfCellsToMapOfObjects } from '../components/Chunk/mapOfCellsToMapOfObjects';
-import { MapRectObject, PositionMap } from '../components/Map/types';
+import { Position } from '../components/Chunk/types';
+import { PositionMap } from '../components/Map/types';
 import { getPath } from '../components/Map/utils/getPath';
 import {
   getPositionKey,
@@ -18,23 +19,45 @@ export function usePath<T>(
 ): PathState {
   const selectedPos: PositionKey[] = [];
   // @@TODO
-  const path: MapRectObject[] = [];
+  let path: Position[] = [];
 
-  const select: PathState['select'] = (pos) => {
-    if (selectedPos[0]) {
-      mapOfObjects.get(selectedPos[0])!.color = 'white';
-      selectedPos[1] = pos;
-    } else {
-      selectedPos[0] = pos;
+  function unmark() {
+    for (const p of path) {
+      mapOfObjects.get(getPositionKey(p))!.color = 'white';
     }
+  }
 
-    const path = getPath(selectedPos.map(positionKeyToPosition), map);
-    console.log(path);
+  function mark() {
     for (const p of path) {
       mapOfObjects.get(getPositionKey(p))!.color = 'yellow';
     }
+    mapOfObjects.get(getPositionKey(path[path.length - 1]))!.color = 'red';
+    mapOfObjects.get(getPositionKey(path[0]))!.color = 'green';
+  }
 
-    mapOfObjects.get(pos)!.color = 'red';
+  const select: PathState['select'] = (pos) => {
+    // unmark previous path
+    unmark();
+
+    if (selectedPos[0] && !selectedPos[1]) {
+      // if have one selected position then we select second position
+      selectedPos.push(pos);
+    } else {
+      // if have two or none then remove second and assign first one
+      selectedPos.pop();
+      selectedPos[0] = pos;
+    }
+
+    // wait for second position
+    if (selectedPos[1]) {
+      const newPath = getPath(selectedPos.map(positionKeyToPosition), map);
+      if (newPath.length) path = newPath;
+    } else {
+      path = selectedPos.map(positionKeyToPosition);
+    }
+
+    // mark new path
+    mark();
   };
 
   return {

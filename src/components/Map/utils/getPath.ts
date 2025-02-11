@@ -35,7 +35,7 @@ export function getPath<T>(
 
   if (getPositionKey(start) === getPositionKey(end)) {
     console.warn('Start position === End position');
-    return [start];
+    return [];
   }
 
   const endKey = getPositionKey(end);
@@ -51,13 +51,13 @@ export function getPath<T>(
     path.push(curr);
     if (key === endKey) return true;
 
-    for (const n of getPositionFilledNeighbors(getPositionKey(curr), map)
+    for (const next of getPositionFilledNeighbors(getPositionKey(curr), map)
       .map((i) => positionKeyToPosition(i))
       .sort(
         (a, b) =>
           getManhattanDistance([a, end]) - getManhattanDistance([b, end])
       )) {
-      if (dfs(n, visited)) return true;
+      if (dfs(next, visited)) return true;
     }
 
     path.pop();
