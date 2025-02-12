@@ -1,14 +1,14 @@
 import {
   getRandomIndexFromArray,
   getRandomItemFromArray,
-} from '../../utils/getRandomItemFromArray';
-import { MapOfChunks } from '../Map/types';
-import { getPositionKey } from '../Map/utils/getPositionKey';
-import { DIRECTION_ARR } from './constants';
+} from '../../../utils/getRandomItemFromArray';
+import { MapOfChunks } from '../../Map/types';
+import { getPositionKey } from '../../Map/utils/getPositionKey';
+import { DIRECTION_ARR } from '../constants';
+import { ChunkOptions } from '../types';
 import { getAppendableChunksIdxByDirection } from './getAppendableChunksByDirection';
 import { getAppendablePositionsByDirection } from './getAppendablePositionsByDirection';
 import { getPositionKeyByPositionAndDirection } from './getPositionKeyFromPreviousAndDirection';
-import { ChunkOptions } from './types';
 
 export function generateChunks(
   minSize: number,

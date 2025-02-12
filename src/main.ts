@@ -1,10 +1,10 @@
 import { CHUNKS_3_3 } from './components/Chunk/constants/CHUNKS_3_3';
-import { generateMap } from './components/Chunk/generateMap';
-import { mapOfCellsToMapOfObjects } from './components/Chunk/mapOfCellsToMapOfObjects';
+import { generateMap } from './components/Chunk/utils/generateMap';
 import { useMap as useMap } from './components/Map/Map';
 import { usePath } from './composables/usePath';
 import './style.css';
 import { useMapClickHandler } from './composables/useMapClickHandler';
+import { mapOfCellsToMapOfObjects } from './components/Chunk/utils/mapOfCellsToMapOfObjects';
 
 const APP_EL = document.querySelector<HTMLDivElement>('#app')!;
 

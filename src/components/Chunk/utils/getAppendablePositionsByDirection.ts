@@ -1,9 +1,9 @@
-import { PositionMap } from '../Map/types';
-import { getPositionKey, PositionKey } from '../Map/utils/getPositionKey';
-import { positionKeyToPosition } from '../Map/utils/positionKeyToPosition';
+import { PositionMap } from '../../Map/types';
+import { getPositionKey, PositionKey } from '../../Map/utils/getPositionKey';
+import { positionKeyToPosition } from '../../Map/utils/positionKeyToPosition';
 import { canAppendChunk } from './canAppendChunk';
-import { DIRECTION_TO_MOVE_ARR } from './constants';
-import { ChunkOptions, Direction } from './types';
+import { DIRECTION_TO_MOVE_ARR } from '../constants';
+import { ChunkOptions, Direction } from '../types';
 
 export function getAppendablePositionsByDirection<T>(
   map: PositionMap<T>,

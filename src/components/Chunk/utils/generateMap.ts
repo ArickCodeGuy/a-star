@@ -1,7 +1,7 @@
-import { MapOfCells } from '../Map/types';
+import { MapOfCells } from '../../Map/types';
 import { generateCells } from './generateCells';
 import { generateChunks } from './generateChunks';
-import { ChunkOptions } from './types';
+import { ChunkOptions } from '../types';
 
 export function generateMap(
   minSize: number,

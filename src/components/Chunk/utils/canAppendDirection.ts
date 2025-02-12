@@ -1,6 +1,6 @@
-import { DIRECTION_TO_ARR } from './constants';
+import { DIRECTION_TO_ARR } from '../constants';
+import { Chunk, Direction } from '../types';
 import { isOob } from './isOob';
-import { Chunk, Direction } from './types';
 
 /** check if chunk can append in direction */
 export function canAppendDirection(

@@ -1,7 +1,7 @@
-import { PositionMap } from '../Map/types';
-import { getPositionKey, PositionKey } from '../Map/utils/getPositionKey';
-import { positionKeyToPosition } from '../Map/utils/positionKeyToPosition';
-import { DIRS } from './constants';
+import { PositionMap } from '../../Map/types';
+import { getPositionKey, PositionKey } from '../../Map/utils/getPositionKey';
+import { positionKeyToPosition } from '../../Map/utils/positionKeyToPosition';
+import { DIRS } from '../constants';
 
 /** Get map all empty neighbors */
 export function getEmptyNeighbors<T>(map: PositionMap<T>): PositionKey[] {

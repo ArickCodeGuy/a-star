@@ -1,5 +1,5 @@
-import { mapOfCellsToMapOfObjects } from '../components/Chunk/mapOfCellsToMapOfObjects';
 import { Position } from '../components/Chunk/types';
+import { mapOfCellsToMapOfObjects } from '../components/Chunk/utils/mapOfCellsToMapOfObjects';
 import { PositionMap } from '../components/Map/types';
 import { getPath } from '../components/Map/utils/getPath';
 import {

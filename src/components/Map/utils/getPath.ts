@@ -1,6 +1,6 @@
 import { PriorityQueue } from '../../../utils/PriorityQueue';
-import { getPositionFilledNeighbors } from '../../Chunk/getNeighbors';
 import { Position } from '../../Chunk/types';
+import { getPositionFilledNeighbors } from '../../Chunk/utils/getNeighbors';
 import { PositionMap } from '../types';
 import { getPositionKey, PositionKey } from './getPositionKey';
 import { positionKeyToPosition } from './positionKeyToPosition';

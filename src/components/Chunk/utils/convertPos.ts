@@ -1,4 +1,4 @@
-import { Direction, Position } from './types';
+import { Direction, Position } from '../types';
 
 /**
  * Returns position of chunk that is beeing appended and it's corresponding touching position

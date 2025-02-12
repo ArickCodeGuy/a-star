@@ -1,8 +1,8 @@
-import { MapOfCells, MapRectObject } from '../Map/types';
-import { PositionKey } from '../Map/utils/getPositionKey';
-import { positionKeyToPosition } from '../Map/utils/positionKeyToPosition';
-import { CHUNK_CELL_NAME, CHUNK_CELL_SIZE } from './constants';
-import { CellValue } from './types';
+import { MapOfCells, MapRectObject } from '../../Map/types';
+import { PositionKey } from '../../Map/utils/getPositionKey';
+import { positionKeyToPosition } from '../../Map/utils/positionKeyToPosition';
+import { CHUNK_CELL_NAME, CHUNK_CELL_SIZE } from '../constants';
+import { CellValue } from '../types';
 
 export function mapOfCellsToMapOfObjects(
   map: MapOfCells

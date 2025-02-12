@@ -1,7 +1,7 @@
-import { getPositionKey, PositionKey } from '../Map/utils/getPositionKey';
-import { positionKeyToPosition } from '../Map/utils/positionKeyToPosition';
-import { DIRECTION_TO_MOVE_ARR } from './constants';
-import { Direction } from './types';
+import { getPositionKey, PositionKey } from '../../Map/utils/getPositionKey';
+import { positionKeyToPosition } from '../../Map/utils/positionKeyToPosition';
+import { DIRECTION_TO_MOVE_ARR } from '../constants';
+import { Direction } from '../types';
 
 export function getPositionKeyByPositionAndDirection(
   position: PositionKey,

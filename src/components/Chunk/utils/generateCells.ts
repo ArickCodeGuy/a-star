@@ -1,7 +1,7 @@
-import { MapOfCells, MapOfChunks } from '../Map/types';
-import { getPositionKey, PositionKey } from '../Map/utils/getPositionKey';
-import { positionKeyToPosition } from '../Map/utils/positionKeyToPosition';
-import { ChunkOptions } from './types';
+import { MapOfCells, MapOfChunks } from '../../Map/types';
+import { getPositionKey, PositionKey } from '../../Map/utils/getPositionKey';
+import { positionKeyToPosition } from '../../Map/utils/positionKeyToPosition';
+import { ChunkOptions } from '../types';
 
 export function generateCells(
   chunks: MapOfChunks,
