@@ -2,20 +2,9 @@ import { PriorityQueue } from '../../../utils/PriorityQueue';
 import { Position } from '../../Chunk/types';
 import { getPositionFilledNeighbors } from '../../Chunk/utils/getNeighbors';
 import { PositionMap } from '../types';
+import { getManhattanDistance } from './getManhattanDistance';
 import { getPositionKey, PositionKey } from './getPositionKey';
 import { positionKeyToPosition } from './positionKeyToPosition';
-
-/**
- * {@link https://en.wikipedia.org/wiki/Taxicab_geometry Manhattan Distance}
- *
- * {@link https://www.geeksforgeeks.org/a-search-algorithm/ geeksforgeeks}
- */
-export function getManhattanDistance([a, b]: Position[]): number {
-  const x = Math.abs(b[0] - a[0]),
-    y = Math.abs(b[1] - a[1]);
-
-  return x + y;
-}
 
 export function getPath<T>(
   [start, end]: Position[],
