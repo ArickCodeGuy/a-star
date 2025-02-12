@@ -1,5 +1,4 @@
 import { PriorityQueue } from '../../../utils/PriorityQueue';
-import { DIRS } from '../../Chunk/constants';
 import { getPositionFilledNeighbors } from '../../Chunk/getNeighbors';
 import { Position } from '../../Chunk/types';
 import { PositionMap } from '../types';
