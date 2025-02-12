@@ -5,8 +5,11 @@ import { PositionMap } from '../types';
 import { getPositionKey, PositionKey } from './getPositionKey';
 import { positionKeyToPosition } from './positionKeyToPosition';
 
-// Manhattan Distance
-/** {@link https://www.geeksforgeeks.org/a-search-algorithm/ } */
+/**
+ * {@link https://en.wikipedia.org/wiki/Taxicab_geometry Manhattan Distance}
+ *
+ * {@link https://www.geeksforgeeks.org/a-search-algorithm/ geeksforgeeks}
+ */
 export function getManhattanDistance([a, b]: Position[]): number {
   const x = Math.abs(b[0] - a[0]),
     y = Math.abs(b[1] - a[1]);
@@ -44,6 +47,7 @@ export function getPath<T>(
 
   function graphToPositionArray(): Position[] {
     const res: PositionKey[] = [];
+    // We go in reverse from end to start
     let curr = endKey;
     while (curr !== startKey) {
       res.push(curr);
@@ -69,10 +73,15 @@ export function getPath<T>(
 
   while (queue.size()) {
     const [curr, prev] = queue.pop();
+
+    // Visited
     if (graph.has(curr)) continue;
     graph.set(curr, prev);
+
+    // Found path to end
     if (curr === endKey) return graphToPositionArray();
 
+    // Queue new edges
     for (const next of getPositionFilledNeighbors(curr, map)) {
       queue.push([next, curr]);
     }

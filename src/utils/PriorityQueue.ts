@@ -3,7 +3,11 @@ const parent = (i: number) => ((i + 1) >>> 1) - 1;
 const left = (i: number) => (i << 1) + 1;
 const right = (i: number) => (i + 1) << 1;
 
-/** {@link https://stackoverflow.com/questions/42919469/efficient-way-to-implement-priority-queue-in-javascript for smart people} */
+/**
+ * Array based priority queue
+ *
+ * For smart people: {@link https://stackoverflow.com/questions/42919469/efficient-way-to-implement-priority-queue-in-javascript stackoverflow}
+ */
 export class PriorityQueue<T> {
   _heap: T[];
   _comparator: (a: T, b: T) => boolean;
