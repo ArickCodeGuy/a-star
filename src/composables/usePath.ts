@@ -12,13 +12,12 @@ export type PathState = {
   select: (pos: PositionKey) => void;
 };
 
-/** *Magically* find best path from point "a" to "b" */
+/** **Magically** find shortest path from point "a" to "b" */
 export function usePath<T>(
   mapOfObjects: ReturnType<typeof mapOfCellsToMapOfObjects>,
   map: PositionMap<T>
 ): PathState {
   const selectedPos: PositionKey[] = [];
-  // @@TODO
   let path: Position[] = [];
 
   function unmark() {
@@ -52,6 +51,7 @@ export function usePath<T>(
     if (selectedPos[1]) {
       const newPath = getPath(selectedPos.map(positionKeyToPosition), map);
       if (newPath.length) path = newPath;
+      else path = selectedPos.map(positionKeyToPosition);
     } else {
       path = selectedPos.map(positionKeyToPosition);
     }

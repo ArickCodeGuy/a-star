@@ -35,36 +35,49 @@ export function getPath<T>(
 
   if (getPositionKey(start) === getPositionKey(end)) {
     console.warn('Start position === End position');
-    return [];
+    return [start];
   }
 
+  /** graph of optimal path from position to start position */
+  const graph: Map<PositionKey, PositionKey> = new Map();
   const endKey = getPositionKey(end);
-  const path: Position[] = [];
+  const startKey = getPositionKey(start);
 
-  // @@TODO
-  function dfs(
-    curr: Position = start,
-    visited = new Set<PositionKey>()
-  ): boolean {
-    const key = getPositionKey(curr);
-    if (visited.has(key)) return false;
-    visited.add(key);
-    path.push(curr);
-    if (key === endKey) return true;
-
-    for (const next of getPositionFilledNeighbors(getPositionKey(curr), map)
-      .map((i) => positionKeyToPosition(i))
-      .sort(
-        (a, b) =>
-          getManhattanDistance([a, end]) - getManhattanDistance([b, end])
-      )) {
-      if (dfs(next, visited)) return true;
+  function graphToPositionArray(): Position[] {
+    const res: PositionKey[] = [];
+    let curr = endKey;
+    while (curr !== startKey) {
+      res.push(curr);
+      const next = graph.get(curr);
+      if (!next || next === curr) {
+        console.warn('Invalid graph. Graph should have path from end to start');
+        return [];
+      }
+      curr = next;
     }
-
-    path.pop();
-    return false;
+    res.push(startKey);
+    return res.reverse().map(positionKeyToPosition);
   }
-  if (dfs()) return path;
+
+  // May be could be better written
+  /** [current postion, previous position] */
+  const queue = new PriorityQueue<PositionKey[]>(
+    ([a], [b]) =>
+      getManhattanDistance([positionKeyToPosition(a), end]) <
+      getManhattanDistance([positionKeyToPosition(b), end])
+  );
+  queue.push([startKey, startKey]);
+
+  while (queue.size()) {
+    const [curr, prev] = queue.pop();
+    if (graph.has(curr)) continue;
+    graph.set(curr, prev);
+    if (curr === endKey) return graphToPositionArray();
+
+    for (const next of getPositionFilledNeighbors(curr, map)) {
+      queue.push([next, curr]);
+    }
+  }
 
   console.warn(
     `Impossible to reach end: ${getPositionKey(
