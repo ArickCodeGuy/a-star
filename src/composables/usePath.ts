@@ -20,6 +20,7 @@ export function usePath<T>(
   const selectedPos: PositionKey[] = [];
   let path: Position[] = [];
 
+  // @@TODO use cell color
   function unmark() {
     for (const p of path) {
       mapOfObjects.get(getPositionKey(p))!.color = 'white';
