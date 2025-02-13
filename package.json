@@ -13,5 +13,8 @@
     "gh-pages": "^6.3.0",
     "typescript": "~5.6.2",
     "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "@datastructures-js/priority-queue": "^6.3.2"
   }
 }

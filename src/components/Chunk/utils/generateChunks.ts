@@ -17,6 +17,7 @@ export function generateChunks(
 ): MapOfChunks {
   const map: MapOfChunks = {};
   let size = minSize + Math.floor(Math.random() * (range + 1));
+  console.log('size', size);
 
   // spawn first cell at center
   map[getPositionKey([0, 0])] = getRandomIndexFromArray(chunksArr);

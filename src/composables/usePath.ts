@@ -36,19 +36,19 @@ export function usePath<T>(
   }
 
   const select: PathState['select'] = (pos) => {
-    // unmark previous path
+    // Unmark previous path
     unmark();
 
     if (selectedPos[0] && !selectedPos[1]) {
-      // if have one selected position then we select second position
+      // If have one selected position then we select second position
       selectedPos.push(pos);
     } else {
-      // if have two or none then remove second and assign first one
+      // If have two or none then remove second and assign first one
       selectedPos.pop();
       selectedPos[0] = pos;
     }
 
-    // wait for second position
+    // If choosen 2 positions then search path
     if (selectedPos[1]) {
       const newPath = getPath(selectedPos.map(positionKeyToPosition), map);
       if (newPath.length) path = newPath;
@@ -57,7 +57,7 @@ export function usePath<T>(
       path = selectedPos.map(positionKeyToPosition);
     }
 
-    // mark new path
+    // Mark new path
     mark();
   };
 

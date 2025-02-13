@@ -1,8 +1,6 @@
-import { PriorityQueue } from '../../../utils/PriorityQueue';
 import { Position } from '../../Chunk/types';
 import { getPositionFilledNeighbors } from '../../Chunk/utils/getNeighbors';
 import { PositionMap } from '../types';
-import { getManhattanDistance } from './getManhattanDistance';
 import { getPositionKey, PositionKey } from './getPositionKey';
 import { positionKeyToPosition } from './positionKeyToPosition';
 
@@ -51,30 +49,26 @@ export function getPath<T>(
     return res.reverse().map(positionKeyToPosition);
   }
 
-  // May be could be better written
-  /** [current postion, previous position] */
-  const queue = new PriorityQueue<PositionKey[]>(
-    ([a], [b]) =>
-      getManhattanDistance([positionKeyToPosition(a), end]) <
-      getManhattanDistance([positionKeyToPosition(b), end])
-  );
-  queue.push([startKey, startKey]);
+  let positions: PositionKey[] = [startKey];
+  graph.set(startKey, startKey);
 
-  while (queue.size()) {
-    const [curr, prev] = queue.pop();
+  // Traverse all map to fill graph
+  // BFS
+  while (positions.length) {
+    const nextPositions: PositionKey[] = [];
 
-    // Visited
-    if (graph.has(curr)) continue;
-    graph.set(curr, prev);
-
-    // Found path to end
-    if (curr === endKey) return graphToPositionArray();
-
-    // Queue new edges
-    for (const next of getPositionFilledNeighbors(curr, map)) {
-      queue.push([next, curr]);
+    for (const position of positions) {
+      for (const next of getPositionFilledNeighbors(position, map)) {
+        if (graph.has(next)) continue;
+        graph.set(next, position);
+        nextPositions.push(next);
+      }
     }
+
+    positions = nextPositions;
   }
+
+  if (graph.has(endKey)) return graphToPositionArray();
 
   console.warn(
     `Impossible to reach end: ${getPositionKey(

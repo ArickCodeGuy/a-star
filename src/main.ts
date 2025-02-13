@@ -8,7 +8,7 @@ import { mapOfCellsToMapOfObjects } from './components/Chunk/utils/mapOfCellsToM
 
 const APP_EL = document.querySelector<HTMLDivElement>('#app')!;
 
-const cells = generateMap(5, 5, CHUNKS_3_3);
+const cells = generateMap(15, 5, CHUNKS_3_3);
 const mapOfObjects = mapOfCellsToMapOfObjects(cells);
 const path = usePath(mapOfObjects, cells);
 
