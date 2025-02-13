@@ -52,6 +52,7 @@ export function getPath<T>(
   let positions: PositionKey[] = [startKey];
   graph.set(startKey, startKey);
 
+  // @@TODO So what would we do if we have different value per edge
   // Traverse all map to fill graph
   // BFS
   while (positions.length) {
