@@ -18,9 +18,12 @@ export type MapRenderObject = MapRectObject;
 
 export type MapOptions = {
   size: Position;
-  position: Position;
   translate: Position;
-  zoom: number;
+  zoom: {
+    current: number;
+    min: number;
+    max: number;
+  };
   renderDistance: number;
   objects: MapRenderObject[];
   onClick?: (e: MouseEvent, options: MapOptions) => void;

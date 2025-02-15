@@ -6,10 +6,13 @@ const SIZE_X = 800;
 const SIZE_Y = 500;
 
 const DEFAULT_OPTIONS: MapOptions = {
-  position: [0, 0],
   translate: [SIZE_X / 2, SIZE_Y / 2],
   size: [SIZE_X, SIZE_Y],
-  zoom: 1,
+  zoom: {
+    min: 0.1,
+    max: 10,
+    current: 1,
+  },
   renderDistance: 3,
   objects: [],
 };
