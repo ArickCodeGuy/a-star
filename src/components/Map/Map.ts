@@ -6,7 +6,7 @@ const SIZE_X = 800;
 const SIZE_Y = 500;
 
 const DEFAULT_OPTIONS: MapOptions = {
-  translate: [SIZE_X / 2, SIZE_Y / 2],
+  translate: [-SIZE_X / 2, -SIZE_Y / 2],
   size: [SIZE_X, SIZE_Y],
   zoom: {
     min: 0.1,
