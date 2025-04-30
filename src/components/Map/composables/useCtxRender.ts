@@ -17,7 +17,14 @@ function renderRectObj(
     obj.height * options.zoom.current
   );
 
-  if (obj.text && obj.textColor) {
+  // @@TODO text size
+  if (
+    obj.text &&
+    obj.textColor &&
+    options.zoom.current < 1.5 &&
+    options.zoom.current > 0.8
+  ) {
+    ctx.font = `10px Arial`;
     ctx.fillStyle = obj.textColor;
     ctx.fillText(obj.text, x + 3, y + 10);
   }

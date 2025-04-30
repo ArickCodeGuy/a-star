@@ -27,14 +27,6 @@ export const useEventListeners = (
     mouseDownY = e.clientY;
     [mouseDownTranslateX, mouseDownTranslateY] = options.translate;
 
-    console.log(
-      getMapAbsolutePosition(
-        options.size.map((i) => i / 2) as Position,
-        options
-      ),
-      options.translate
-    );
-
     document.addEventListener('mousemove', handleMoveWithinCanvas);
     document.addEventListener(
       'mouseup',

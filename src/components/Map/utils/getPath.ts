@@ -10,7 +10,10 @@ export function getPath<T>(
 ): Position[] {
   if (!start || !end) return [];
 
-  if (start[0] === end[0] && start[1] === end[1]) return [];
+  if (start[0] === end[0] && start[1] === end[1]) {
+    console.warn('Start position is end position');
+    return [];
+  }
 
   if (!map[getPositionKey(start)]) {
     console.warn('Start position is invalid');
