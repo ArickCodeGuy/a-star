@@ -1,4 +1,4 @@
-import { Position } from '../../Chunk/types';
+import { Position } from '../components/Chunk/types';
 
 /**
  * {@link https://en.wikipedia.org/wiki/Taxicab_geometry Manhattan Distance}

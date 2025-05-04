@@ -1,7 +1,24 @@
+import { PriorityQueue } from '@datastructures-js/priority-queue';
 import { Position } from '../components/Chunk/types';
 import { PositionMap } from '../components/Map/types';
-import { getPositionKey } from '../components/Map/utils/getPositionKey';
+import {
+  getPositionKey,
+  PositionKey,
+} from '../components/Map/utils/getPositionKey';
+import { getManhattanDistance } from './getManhattanDistance';
+import { getPositionNeighbors } from '../components/Chunk/utils/getNeighbors';
+import { positionKeyToPosition } from '../components/Map/utils/positionKeyToPosition';
 
+type XYG = [number, number, number];
+
+function getFGH([x, y, G]: XYG, start: Position, end: Position): number[] {
+  const H = getManhattanDistance([[x, y], end]);
+  const F = G + H;
+
+  return [F, G, H];
+}
+
+// @@TODO
 export function aStar<T>(
   [start, end]: Position[],
   map: PositionMap<T>
@@ -28,6 +45,58 @@ export function aStar<T>(
     return [start];
   }
 
-  // @@TODO
-  return [];
+  // [x, y, G]
+  const q = new PriorityQueue<XYG>((a, b) => {
+    const A = getFGH(a, start, end);
+    const B = getFGH(b, start, end);
+
+    if (A[0] === B[0]) return A[2] - B[2];
+    return A[0] - B[0];
+  });
+  q.push([...start, 0]);
+
+  const visited = new Set<string>();
+  // Graph of of optimal path from start to current position
+  const graph = new Map<PositionKey, XYG>();
+  while (q.size()) {
+    const [x, y, G] = q.pop()!;
+    const currKey = getPositionKey([x, y]);
+    if (visited.has(currKey)) continue;
+    visited.add(currKey);
+
+    for (const nextKey of getPositionNeighbors(currKey, map)) {
+      if (visited.has(nextKey)) continue;
+      const next = positionKeyToPosition(nextKey);
+
+      if (!graph.has(nextKey)) {
+        graph.set(nextKey, [x, y, G + 1]);
+      } else {
+        // We have multiple paths leading to next position
+        const A = getFGH(graph.get(nextKey)!, start, end);
+        const B = getFGH([x, y, G + 1], start, end);
+
+        // If new found path is better
+        if (A[0] > B[0]) {
+          graph.set(nextKey, [x, y, G + 1]);
+        }
+      }
+
+      if (next[0] === end[0] && next[1] === end[1]) break;
+
+      q.push([...next, G + 1]);
+    }
+  }
+
+  // No path found
+  if (!graph.has(getPositionKey(end))) return [];
+
+  const res: Position[] = [];
+  let curr = end;
+  while (curr[0] !== start[0] && curr[1] !== start[1]) {
+    res.push(curr);
+    const [x, y] = graph.get(getPositionKey(curr))!;
+    curr = [x, y];
+  }
+
+  return res;
 }

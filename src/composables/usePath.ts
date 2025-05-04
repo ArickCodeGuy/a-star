@@ -7,6 +7,7 @@ import {
   PositionKey,
 } from '../components/Map/utils/getPositionKey';
 import { positionKeyToPosition } from '../components/Map/utils/positionKeyToPosition';
+import { aStar } from '../utils/aStar';
 
 export type PathState = {
   select: (pos: PositionKey) => void;
@@ -50,8 +51,8 @@ export function usePath<T>(
 
     // If choosen 2 positions then search path
     if (selectedPos[1]) {
-      console.log('path');
       const newPath = getPath(selectedPos.map(positionKeyToPosition), map);
+      // const newPath = aStar(selectedPos.map(positionKeyToPosition), map);
       if (newPath.length) path = newPath;
       else path = selectedPos.map(positionKeyToPosition);
     } else {
