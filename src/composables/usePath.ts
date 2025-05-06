@@ -51,8 +51,7 @@ export function usePath<T>(
 
     // If choosen 2 positions then search path
     if (selectedPos[1]) {
-      const newPath = getPath(selectedPos.map(positionKeyToPosition), map);
-      // const newPath = aStar(selectedPos.map(positionKeyToPosition), map);
+      const newPath = aStar(selectedPos.map(positionKeyToPosition), map);
       if (newPath.length) path = newPath;
       else path = selectedPos.map(positionKeyToPosition);
     } else {

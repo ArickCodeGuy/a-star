@@ -18,7 +18,6 @@ function getFGH([x, y, G]: XYG, start: Position, end: Position): number[] {
   return [F, G, H];
 }
 
-// @@TODO
 export function aStar<T>(
   [start, end]: Position[],
   map: PositionMap<T>
@@ -55,11 +54,17 @@ export function aStar<T>(
   });
   q.push([...start, 0]);
 
-  const visited = new Set<string>();
-  // Graph of of optimal path from start to current position
+  const visited = new Set<PositionKey>();
+  /**
+   * Graph of of optimal path from start to current position
+   * [current position key]: [x, y, G] of previous position
+   */
   const graph = new Map<PositionKey, XYG>();
   while (q.size()) {
     const [x, y, G] = q.pop()!;
+
+    if (x === end[0] && y === end[1]) break;
+
     const currKey = getPositionKey([x, y]);
     if (visited.has(currKey)) continue;
     visited.add(currKey);
@@ -67,23 +72,21 @@ export function aStar<T>(
     for (const nextKey of getPositionNeighbors(currKey, map)) {
       if (visited.has(nextKey)) continue;
       const next = positionKeyToPosition(nextKey);
+      q.push([...next, G + 1]);
 
       if (!graph.has(nextKey)) {
         graph.set(nextKey, [x, y, G + 1]);
-      } else {
-        // We have multiple paths leading to next position
-        const A = getFGH(graph.get(nextKey)!, start, end);
-        const B = getFGH([x, y, G + 1], start, end);
-
-        // If new found path is better
-        if (A[0] > B[0]) {
-          graph.set(nextKey, [x, y, G + 1]);
-        }
+        continue;
       }
 
-      if (next[0] === end[0] && next[1] === end[1]) break;
+      // We have multiple paths leading to next position
+      const A = getFGH(graph.get(nextKey)!, start, end);
+      const B = getFGH([x, y, G + 1], start, end);
 
-      q.push([...next, G + 1]);
+      if (A[0] <= B[0]) continue;
+
+      // If new found path is better
+      graph.set(nextKey, [x, y, G + 1]);
     }
   }
 
@@ -92,11 +95,13 @@ export function aStar<T>(
 
   const res: Position[] = [];
   let curr = end;
-  while (curr[0] !== start[0] && curr[1] !== start[1]) {
+  while (curr[0] !== start[0] || curr[1] !== start[1]) {
     res.push(curr);
     const [x, y] = graph.get(getPositionKey(curr))!;
     curr = [x, y];
   }
+  res.push(start);
+  res.reverse();
 
   return res;
 }
