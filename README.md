@@ -1,7 +1,8 @@
 # A-star
 
 Simple usage of A\* pathfinding algorigthm  
-[Demo](https://arickcodeguy.github.io/a-star/)
+[Demo](https://arickcodeguy.github.io/a-star/)  
+![Preview](preview.png)
 
 ## Table of Contents
 
