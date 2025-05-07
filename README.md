@@ -14,8 +14,7 @@ Simple usage of A\* pathfinding algorigthm
 ## Getting started
 
 ```cmd
-  pnpm i
-  pnpm dev
+pnpm i & pnpm dev
 ```
 
 ## Versions
@@ -33,5 +32,5 @@ Simple usage of A\* pathfinding algorigthm
 Deployed using npm `gh-pages`
 
 ```cmd
-  npm run deploy
+npm run deploy
 ```
