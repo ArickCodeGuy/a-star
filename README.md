@@ -24,8 +24,11 @@ pnpm i & pnpm dev
 
 ## Algoritghm implementation
 
-2 main pathfinding algos can be found here
+2 main pathfinding algos can be found here  
 [src/utils/pathfinding](https://github.com/ArickCodeGuy/a-star/tree/main/src/utils/pathfinding)
+
+Straightforward implementation from this source  
+[youtube](https://youtu.be/-L-WgKMFuhE?si=_ZsYx9AYUWEygBe6)
 
 ## Deploy
 
