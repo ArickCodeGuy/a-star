@@ -1,11 +1,16 @@
-import { Position } from '../../Chunk/types';
-import { getPositionFilledNeighbors } from '../../Chunk/utils/getNeighbors';
-import { PositionMap } from '../types';
-import { getPositionKey, PositionKey } from './getPositionKey';
-import { positionKeyToPosition } from './positionKeyToPosition';
+import { Position } from '@/components/Chunk/types';
+import { getPositionFilledNeighbors } from '@/components/Chunk/utils/getNeighbors';
+import { PositionMap } from '@/components/Map/types';
+import {
+  getPositionKey,
+  PositionKey,
+} from '@/components/Map/utils/getPositionKey';
+import { positionKeyToPosition } from '@/components/Map/utils/positionKeyToPosition';
 
-export function getPath<T>(
-  [start, end]: Position[],
+/** Traverse all nodes using bfs to get shortest path from a to b */
+export function bfs<T>(
+  start: Position,
+  end: Position,
   map: PositionMap<T>
 ): Position[] {
   if (!start || !end) return [];

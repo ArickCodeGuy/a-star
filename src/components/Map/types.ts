@@ -3,7 +3,7 @@ import { PositionKey } from './utils/getPositionKey';
 
 export type MapRectObject = {
   type: 'rect';
-  /** For identifying purposes only */
+  /** For identifying purposes only. Like prototype id */
   name?: string;
   x: number;
   y: number;

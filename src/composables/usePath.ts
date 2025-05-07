@@ -1,13 +1,12 @@
-import { Position } from '../components/Chunk/types';
-import { mapOfCellsToMapOfObjects } from '../components/Chunk/utils/mapOfCellsToMapOfObjects';
-import { PositionMap } from '../components/Map/types';
-import { getPath } from '../components/Map/utils/getPath';
+import { Position } from '@/components/Chunk/types';
+import { mapOfCellsToMapOfObjects } from '@/components/Chunk/utils/mapOfCellsToMapOfObjects';
+import { PositionMap } from '@/components/Map/types';
 import {
   getPositionKey,
   PositionKey,
-} from '../components/Map/utils/getPositionKey';
-import { positionKeyToPosition } from '../components/Map/utils/positionKeyToPosition';
-import { aStar } from '../utils/aStar';
+} from '@/components/Map/utils/getPositionKey';
+import { positionKeyToPosition } from '@/components/Map/utils/positionKeyToPosition';
+import { aStar } from '@/utils/pathfinding/aStar';
 
 export type PathState = {
   select: (pos: PositionKey) => void;
@@ -51,7 +50,8 @@ export function usePath<T>(
 
     // If choosen 2 positions then search path
     if (selectedPos[1]) {
-      const newPath = aStar(selectedPos.map(positionKeyToPosition), map);
+      const [start, end] = selectedPos.map(positionKeyToPosition);
+      const newPath = aStar(start, end, map);
       if (newPath.length) path = newPath;
       else path = selectedPos.map(positionKeyToPosition);
     } else {

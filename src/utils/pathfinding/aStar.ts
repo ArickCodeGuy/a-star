@@ -1,13 +1,13 @@
 import { PriorityQueue } from '@datastructures-js/priority-queue';
-import { Position } from '../components/Chunk/types';
-import { PositionMap } from '../components/Map/types';
+import { Position } from '@/components/Chunk/types';
+import { PositionMap } from '@/components/Map/types';
 import {
   getPositionKey,
   PositionKey,
-} from '../components/Map/utils/getPositionKey';
-import { getManhattanDistance } from './getManhattanDistance';
-import { getPositionNeighbors } from '../components/Chunk/utils/getNeighbors';
-import { positionKeyToPosition } from '../components/Map/utils/positionKeyToPosition';
+} from '@/components/Map/utils/getPositionKey';
+import { getManhattanDistance } from '@/utils/getManhattanDistance';
+import { getPositionNeighbors } from '@/components/Chunk/utils/getNeighbors';
+import { positionKeyToPosition } from '@/components/Map/utils/positionKeyToPosition';
 
 type XYG = [number, number, number];
 
@@ -19,7 +19,8 @@ function getFGH([x, y, G]: XYG, start: Position, end: Position): number[] {
 }
 
 export function aStar<T>(
-  [start, end]: Position[],
+  start: Position,
+  end: Position,
   map: PositionMap<T>
 ): Position[] {
   if (!start || !end) return [];
@@ -44,7 +45,6 @@ export function aStar<T>(
     return [start];
   }
 
-  // [x, y, G]
   const q = new PriorityQueue<XYG>((a, b) => {
     const A = getFGH(a, start, end);
     const B = getFGH(b, start, end);

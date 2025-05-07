@@ -1,6 +1,7 @@
 import { MapOptions, MapRectObject } from '../types';
 import { useCtxClear } from './useCtxClear';
 
+/** Draws object on canvas */
 function renderRectObj(
   ctx: CanvasRenderingContext2D,
   obj: MapRectObject,
