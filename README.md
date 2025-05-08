@@ -14,7 +14,8 @@ Simple usage of A\* pathfinding algorigthm
 ## Getting started
 
 ```cmd
-pnpm i & pnpm dev
+pnpm i
+pnpm dev
 ```
 
 ## Versions
